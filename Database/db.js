@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
-import { config } from '../Config/config'
+import { config } from '../Config/config.js'
 
-const connectToDB = async () => {
+export const connectToDB = async () => {
    try {
      await mongoose.connect(config.mongodb.url)
      console.log("Connected to database Successfully.")
@@ -10,5 +10,3 @@ const connectToDB = async () => {
     console.log(err.message)
    }
 }
-
-module.exports = connectToDB

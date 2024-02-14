@@ -1,11 +1,13 @@
-import express from "express"
+import express from "express";
+import { config } from "./Config/config.js";
+import { connectToDB } from "./Database/db.js";
 
-const app = express()
+const app = express();
+const port = config.server.port;
 
-const port = 3000
-
-// 
+// Middlewares
+connectToDB();
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
-})
+    console.log(`Server running on port ${port}`);
+});
