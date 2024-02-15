@@ -1,5 +1,7 @@
-import mongoose from 'mongoose'
-import { isEmail } from 'validator'
+import mongoose from 'mongoose';
+import validator from 'validator';
+
+const { isEmail } = validator;
 
 const userSchema = new mongoose.Schema({
     name : {
@@ -8,7 +10,9 @@ const userSchema = new mongoose.Schema({
     },
     email : {
         type: String,
-        required: [isEmail, "Please enter a email"]
+        required: [true, "Please enter an email"], 
+        unique: true,
+        validate: [isEmail, 'Please enter a valid email']
     },
     password: {
         type: String,
@@ -18,7 +22,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please enter a profile image"]
     }
-})
+}, {timestamps: true})
 
 export const userModel = mongoose.model("usermodels", userSchema)
-
